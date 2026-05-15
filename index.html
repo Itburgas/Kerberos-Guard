@@ -1,3 +1,12 @@
+# Landing Page Profesional para ADAutomationHub
+
+A continuación tienes una landing page moderna y profesional para tu proyecto **ADAutomationHub**, diseñada para destacar tus servicios de automatización, auditoría y seguridad de Active Directory, Kerberos y Entra ID.
+
+---
+
+## `index.html`
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -350,7 +359,7 @@
             Si buscas automatizar procesos, mejorar la seguridad o resolver problemas complejos,
             estaré encantado de ayudarte.
           </p>
-          <a href="mailto:tu-correo@dominio.com" class="btn btn-primary">Contactar</a>
+          <a href="mailto:fernando.pinero@itburgas.com" class="btn btn-primary">Contactar</a>
         </div>
       </div>
     </section>
@@ -371,9 +380,9 @@
 
 Antes de publicar, actualiza estos datos:
 
-1. fernando.pinero@itburgas.com.
+1. Sustituye `tu-correo@dominio.com` por tu correo real (ya actualizado a `fernando.pinero@itburgas.com`).
 2. Cambia la URL del repositorio de GitHub si lo deseas.
-3. https://www.linkedin.com/in/fernando-jose-p-338a866a/.
+3. Añade tu perfil de LinkedIn.
 4. Ajusta los textos según los servicios que quieras ofrecer.
 
 ---
@@ -397,10 +406,160 @@ Con una landing page profesional, responsive y orientada a presentar tus servici
 
 ---
 
+## Integrar formulario de contacto con Azure Functions
+
+A continuación tienes una implementación sencilla para que el formulario de contacto envíe correos utilizando Azure Functions.
+
+### 1. Estructura del proyecto
+
+```text
+api/
+└── contact/
+    ├── function.json
+    └── index.js
+```
+
+---
+
+### 2. `api/contact/function.json`
+
+```json
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": ["post"]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    }
+  ]
+}
+```
+
+---
+
+### 3. `api/contact/index.js`
+
+```javascript
+module.exports = async function (context, req) {
+  const { nombre, email, mensaje } = req.body || {};
+
+  if (!nombre || !email || !mensaje) {
+    context.res = {
+      status: 400,
+      body: { success: false, message: 'Todos los campos son obligatorios.' }
+    };
+    return;
+  }
+
+  // Aquí puedes integrar SendGrid, Resend o Microsoft Graph.
+  context.log('Nuevo mensaje recibido:', { nombre, email, mensaje });
+
+  context.res = {
+    status: 200,
+    body: {
+      success: true,
+      message: 'Mensaje enviado correctamente.'
+    }
+  };
+};
+```
+
+---
+
+### 4. Formulario HTML
+
+Añade esta sección dentro de `index.html`:
+
+```html
+<form id="contact-form" class="card" style="max-width: 700px; margin: 0 auto;">
+  <input type="text" id="nombre" placeholder="Nombre" required>
+  <input type="email" id="email" placeholder="Correo electrónico" required>
+  <textarea id="mensaje" rows="6" placeholder="Escribe tu mensaje" required></textarea>
+  <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+  <p id="form-status" style="margin-top: 1rem;"></p>
+</form>
+```
+
+---
+
+### 5. JavaScript para enviar el formulario
+
+Antes de `</body>`, añade:
+
+```html
+<script>
+document.getElementById('contact-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const status = document.getElementById('form-status');
+  status.textContent = 'Enviando...';
+
+  const payload = {
+    nombre: document.getElementById('nombre').value,
+    email: document.getElementById('email').value,
+    mensaje: document.getElementById('mensaje').value
+  };
+
+  const response = await fetch('/api/contact', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  });
+
+  const result = await response.json();
+
+  if (result.success) {
+    status.textContent = 'Mensaje enviado correctamente.';
+    document.getElementById('contact-form').reset();
+  } else {
+    status.textContent = result.message || 'Se produjo un error.';
+  }
+});
+</script>
+```
+
+---
+
+### 6. Publicar automáticamente
+
+Como tu sitio está en Azure Static Web Apps, la carpeta `api/` se desplegará automáticamente como Azure Functions sin configuración adicional.
+
+---
+
+### 7. Envío real de correos (opcional)
+
+Puedes ampliar la función para enviar emails mediante:
+
+* SendGrid
+* Resend
+* Microsoft Graph
+* SMTP de Microsoft 365
+
+---
+
 ## Próximas mejoras opcionales
 
-* Integrar formulario de contacto con Azure Functions.
-* Añadir blog técnico.
-* Incorporar Google Analytics o Microsoft Clarity.
+* Integrar envío real de correo con Resend o SendGrid.
+
+* Añadir Google Analytics o Microsoft Clarity.
+
 * Optimizar SEO y Open Graph.
+
+* Crear sección de casos de uso.
+
+* Añadir blog técnico.
+
+* Incorporar Google Analytics o Microsoft Clarity.
+
+* Optimizar SEO y Open Graph.
+
 * Crear sección de casos de uso.
