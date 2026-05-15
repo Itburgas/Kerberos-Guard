@@ -351,13 +351,37 @@
       <p>Cuéntame tu proyecto y te responderé lo antes posible.</p>
     </div>
 
-    <form id="contact-form" class="card" style="max-width: 700px; margin: 0 auto;">
-      <input
-        type="text"
-        id="nombre"
-        placeholder="Nombre"
-        required
-        style="width:100%; padding:12px; margin-bottom:12px; border-radius:8px; border:none;"
+    <form id="contactForm" style="max-width:600px;margin:0 auto;">
+  <input
+    type="text"
+    name="nombre"
+    placeholder="Tu nombre"
+    required
+    style="width:100%;padding:15px;margin-bottom:15px;border-radius:8px;border:none;"
+  />
+
+  <input
+    type="email"
+    name="email"
+    placeholder="Tu email"
+    required
+    style="width:100%;padding:15px;margin-bottom:15px;border-radius:8px;border:none;"
+  />
+
+  <textarea
+    name="mensaje"
+    placeholder="Tu mensaje"
+    required
+    rows="6"
+    style="width:100%;padding:15px;margin-bottom:15px;border-radius:8px;border:none;"
+  ></textarea>
+
+  <button type="submit" class="btn btn-primary">
+    Enviar mensaje
+  </button>
+
+  <p id="status" style="margin-top:15px;"></p>
+</form>
       />
 
       <input
