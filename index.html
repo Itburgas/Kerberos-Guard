@@ -28,6 +28,10 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       background: var(--bg);
@@ -92,6 +96,9 @@
       border-radius: 10px;
       font-weight: 600;
       transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
     }
 
     .btn-primary {
@@ -107,6 +114,7 @@
     .btn-secondary {
       border: 1px solid var(--border);
       color: var(--text);
+      background: transparent;
     }
 
     .btn-secondary:hover {
@@ -195,31 +203,38 @@
       color: var(--muted);
     }
 
-    .card ul {
-      padding-left: 1.2rem;
-    }
-
     .highlight {
       color: var(--accent);
       font-weight: 600;
     }
 
-    .cta {
+    /* Formulario */
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #0f172a;
+      color: white;
+      font-size: 1rem;
+    }
+
+    form input::placeholder,
+    form textarea::placeholder {
+      color: #94a3b8;
+    }
+
+    form textarea {
+      resize: vertical;
+      min-height: 160px;
+    }
+
+    #status {
+      margin-top: 15px;
       text-align: center;
-      background: linear-gradient(135deg, #1e3a8a, #2563eb);
-      border-radius: 24px;
-      padding: 4rem 2rem;
-    }
-
-    .cta h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .cta p {
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      color: rgba(255, 255, 255, 0.9);
+      font-weight: 500;
     }
 
     footer {
@@ -237,6 +252,10 @@
       .hero {
         padding-top: 4rem;
       }
+
+      h1 {
+        font-size: 2.5rem;
+      }
     }
   </style>
 </head>
@@ -249,80 +268,113 @@
           <a href="#servicios">Servicios</a>
           <a href="#scripts">Scripts</a>
           <a href="#contacto">Contacto</a>
-          <a href="https://github.com/Itburgas/Kerberos-Guard" target="_blank" class="btn btn-secondary">GitHub</a>
+          <a
+            href="https://github.com/Itburgas/Kerberos-Guard"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary"
+          >
+            GitHub
+          </a>
         </div>
       </nav>
     </div>
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="hero">
       <div class="container">
         <div class="badge">PowerShell · Active Directory · Kerberos · Entra ID</div>
         <h1>Automatización y Seguridad para entornos Microsoft</h1>
         <p>
-          Desarrollo de scripts avanzados, auditorías de seguridad y automatización de procesos
-          para Active Directory, Kerberos y Microsoft Entra ID.
+          Desarrollo de scripts avanzados, auditorías de seguridad y automatización
+          de procesos para Active Directory, Kerberos y Microsoft Entra ID.
         </p>
         <div class="hero-actions">
           <a href="#contacto" class="btn btn-primary">Solicitar consultoría</a>
-          <a href="https://github.com/Itburgas/Kerberos-Guard" target="_blank" class="btn btn-secondary">Ver repositorio</a>
+          <a
+            href="https://github.com/Itburgas/Kerberos-Guard"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary"
+          >
+            Ver repositorio
+          </a>
         </div>
       </div>
     </section>
 
-    <section id="contacto">
+    <!-- SERVICIOS -->
+    <section id="servicios">
       <div class="container">
         <div class="section-title">
           <h2>Servicios</h2>
-          <p>Soluciones enfocadas en automatización, hardening y visibilidad de entornos híbridos.</p>
+          <p>
+            Soluciones enfocadas en automatización, hardening y visibilidad
+            de entornos híbridos.
+          </p>
         </div>
+
         <div class="grid grid-3">
           <div class="card">
             <h3>🔐 Auditoría de Active Directory</h3>
             <p>
-              Revisión de cuentas privilegiadas, delegaciones, GPOs, SPNs y configuraciones críticas.
+              Revisión de cuentas privilegiadas, delegaciones, GPOs, SPNs
+              y configuraciones críticas.
             </p>
           </div>
+
           <div class="card">
             <h3>🛡️ Migración de RC4 a AES</h3>
             <p>
-              Identificación de dependencias heredadas y plan de transición seguro hacia cifrado moderno.
+              Identificación de dependencias heredadas y plan de transición
+              seguro hacia cifrado moderno.
             </p>
           </div>
+
           <div class="card">
             <h3>⚙️ Automatización con PowerShell</h3>
             <p>
-              Scripts para inventario, reporting, remediación y monitorización continua.
+              Scripts para inventario, reporting, remediación
+              y monitorización continua.
             </p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- SCRIPTS -->
     <section id="scripts">
       <div class="container">
         <div class="section-title">
           <h2>Scripts destacados</h2>
           <p>Herramientas prácticas para administración y seguridad.</p>
         </div>
+
         <div class="grid grid-3">
           <div class="card">
             <h3>Kerberos Encryption Audit</h3>
             <p>Detección de RC4, AES y análisis de tickets Kerberos.</p>
           </div>
+
           <div class="card">
             <h3>Privileged Roles Report</h3>
             <p>Inventario de roles críticos en Microsoft Entra ID.</p>
           </div>
+
           <div class="card">
             <h3>LDAP Synchronization Tools</h3>
-            <p>Automatización de atributos entre directorios y sistemas corporativos.</p>
+            <p>
+              Automatización de atributos entre directorios
+              y sistemas corporativos.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- EXPERIENCIA -->
     <section>
       <div class="container">
         <div class="grid grid-3">
@@ -330,10 +382,12 @@
             <h3><span class="highlight">10+</span> años de experiencia</h3>
             <p>Administración y seguridad de entornos Microsoft.</p>
           </div>
+
           <div class="card">
             <h3><span class="highlight">100%</span> automatizable</h3>
             <p>Procesos repetitivos convertidos en scripts mantenibles.</p>
           </div>
+
           <div class="card">
             <h3><span class="highlight">Enfoque práctico</span></h3>
             <p>Soluciones listas para aplicar en producción.</p>
@@ -342,111 +396,93 @@
       </div>
     </section>
 
-    <!-- Sustituye SOLO la sección final de contacto por este bloque -->
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <div class="container">
+        <div class="section-title">
+          <h2>Contacto</h2>
+          <p>Cuéntame tu proyecto y te responderé lo antes posible.</p>
+        </div>
 
-<section id="contacto">
-  <div class="container">
-    <div class="section-title">
-      <h2>Contacto</h2>
-      <p>Cuéntame tu proyecto y te responderé lo antes posible.</p>
+        <form id="contactForm" style="max-width: 600px; margin: 0 auto;">
+          <input
+            type="text"
+            name="nombre"
+            placeholder="Tu nombre"
+            required
+          />
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Tu correo electrónico"
+            required
+          />
+
+          <textarea
+            name="mensaje"
+            rows="6"
+            placeholder="Escribe tu mensaje"
+            required
+          ></textarea>
+
+          <button type="submit" class="btn btn-primary">
+            Enviar mensaje
+          </button>
+
+          <p id="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 ADAutomationHub · Automatización y Seguridad Microsoft.
     </div>
+  </footer>
 
-    <form id="contactForm" style="max-width:600px;margin:0 auto;">
-  <input
-    type="text"
-    name="nombre"
-    placeholder="Tu nombre"
-    required
-    style="width:100%;padding:15px;margin-bottom:15px;border-radius:8px;border:none;"
-  />
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-  <input
-    type="email"
-    name="email"
-    placeholder="Tu email"
-    required
-    style="width:100%;padding:15px;margin-bottom:15px;border-radius:8px;border:none;"
-  />
+      const form = e.target;
+      const status = document.getElementById("status");
 
-  <textarea
-    name="mensaje"
-    placeholder="Tu mensaje"
-    required
-    rows="6"
-    style="width:100%;padding:15px;margin-bottom:15px;border-radius:8px;border:none;"
-  ></textarea>
+      const data = {
+        nombre: form.nombre.value,
+        email: form.email.value,
+        mensaje: form.mensaje.value
+      };
 
-  <button type="submit" class="btn btn-primary">
-    Enviar mensaje
-  </button>
+      status.textContent = "Enviando...";
+      status.style.color = "#cbd5e1";
 
-  <p id="status" style="margin-top:15px;"></p>
-</form>
-      />
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
 
-      <input
-        type="email"
-        id="email"
-        placeholder="Correo electrónico"
-        required
-        style="width:100%; padding:12px; margin-bottom:12px; border-radius:8px; border:none;"
-      />
+        const result = await response.json();
 
-      <textarea
-        id="mensaje"
-        rows="6"
-        placeholder="Escribe tu mensaje"
-        required
-        style="width:100%; padding:12px; margin-bottom:12px; border-radius:8px; border:none;"
-      ></textarea>
-
-      <button type="submit" class="btn btn-primary">
-        Enviar mensaje
-      </button>
-
-      <p id="form-status" style="margin-top: 1rem;"></p>
-    </form>
-  </div>
-</section>
-
-<!-- Pega este script justo antes de </body> -->
-
-<script>
-document.getElementById('contact-form').addEventListener('submit', async function (e) {
-  e.preventDefault();
-
-  const status = document.getElementById('form-status');
-  status.textContent = 'Enviando...';
-  status.style.color = '#cbd5e1';
-
-  const payload = {
-    nombre: document.getElementById('nombre').value,
-    email: document.getElementById('email').value,
-    mensaje: document.getElementById('mensaje').value
-  };
-
-  try {
-    const response = await fetch('/api/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
+        if (response.ok && result.success) {
+          status.textContent = "✅ Mensaje enviado correctamente.";
+          status.style.color = "#22c55e";
+          form.reset();
+        } else {
+          status.textContent =
+            "❌ " + (result.error || result.message || "Error al enviar.");
+          status.style.color = "#ef4444";
+        }
+      } catch (error) {
+        status.textContent = "❌ Error de conexión.";
+        status.style.color = "#ef4444";
+      }
     });
-
-    const result = await response.json();
-
-    if (result.success) {
-      status.textContent = 'Mensaje enviado correctamente.';
-      status.style.color = '#22c55e';
-      document.getElementById('contact-form').reset();
-    } else {
-      status.textContent = result.message || 'Se produjo un error.';
-      status.style.color = '#ef4444';
-    }
-  } catch (error) {
-    status.textContent = 'Error al enviar el mensaje.';
-    status.style.color = '#ef4444';
-  }
-});
-</script>
+  </script>
+</body>
+</html>
