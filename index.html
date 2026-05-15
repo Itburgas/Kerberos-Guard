@@ -280,7 +280,7 @@ A continuación tienes una landing page moderna y profesional para tu proyecto *
       </div>
     </section>
 
-    <section id="servicios">
+    <section id="contacto">
       <div class="container">
         <div class="section-title">
           <h2>Servicios</h2>
@@ -351,28 +351,87 @@ A continuación tienes una landing page moderna y profesional para tu proyecto *
       </div>
     </section>
 
-    <section id="contacto">
-      <div class="container">
-        <div class="cta">
-          <h2>¿Necesitas ayuda con Active Directory o Entra ID?</h2>
-          <p>
-            Si buscas automatizar procesos, mejorar la seguridad o resolver problemas complejos,
-            estaré encantado de ayudarte.
-          </p>
-          <a href="mailto:fernando.pinero@itburgas.com" class="btn btn-primary">Contactar</a>
-        </div>
-      </div>
-    </section>
-  </main>
+    <!-- Sustituye SOLO la sección final de contacto por este bloque -->
 
-  <footer>
-    <div class="container">
-      © 2026 ADAutomationHub · Automatización y Seguridad Microsoft.
+<section id="contacto">
+  <div class="container">
+    <div class="section-title">
+      <h2>Contacto</h2>
+      <p>Cuéntame tu proyecto y te responderé lo antes posible.</p>
     </div>
-  </footer>
-</body>
-</html>
-```
 
----
+    <form id="contact-form" class="card" style="max-width: 700px; margin: 0 auto;">
+      <input
+        type="text"
+        id="nombre"
+        placeholder="Nombre"
+        required
+        style="width:100%; padding:12px; margin-bottom:12px; border-radius:8px; border:none;"
+      />
 
+      <input
+        type="email"
+        id="email"
+        placeholder="Correo electrónico"
+        required
+        style="width:100%; padding:12px; margin-bottom:12px; border-radius:8px; border:none;"
+      />
+
+      <textarea
+        id="mensaje"
+        rows="6"
+        placeholder="Escribe tu mensaje"
+        required
+        style="width:100%; padding:12px; margin-bottom:12px; border-radius:8px; border:none;"
+      ></textarea>
+
+      <button type="submit" class="btn btn-primary">
+        Enviar mensaje
+      </button>
+
+      <p id="form-status" style="margin-top: 1rem;"></p>
+    </form>
+  </div>
+</section>
+
+<!-- Pega este script justo antes de </body> -->
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const status = document.getElementById('form-status');
+  status.textContent = 'Enviando...';
+  status.style.color = '#cbd5e1';
+
+  const payload = {
+    nombre: document.getElementById('nombre').value,
+    email: document.getElementById('email').value,
+    mensaje: document.getElementById('mensaje').value
+  };
+
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      status.textContent = 'Mensaje enviado correctamente.';
+      status.style.color = '#22c55e';
+      document.getElementById('contact-form').reset();
+    } else {
+      status.textContent = result.message || 'Se produjo un error.';
+      status.style.color = '#ef4444';
+    }
+  } catch (error) {
+    status.textContent = 'Error al enviar el mensaje.';
+    status.style.color = '#ef4444';
+  }
+});
+</script>
