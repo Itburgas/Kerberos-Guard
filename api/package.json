@@ -1,7 +1,6 @@
 {
-  "name": "adautomationhub-api",
+  "name": "api",
   "version": "1.0.0",
-  "description": "Azure Functions for ADAutomationHub",
   "main": "index.js",
   "dependencies": {
     "resend": "^4.0.0"
