@@ -1,21 +1,22 @@
 const { Resend } = require("resend");
 
 module.exports = async function (context, req) {
-
   try {
+    if (req.method !== "POST") {
+      context.res = {
+        status: 405,
+        body: "Method not allowed"
+      };
+      return;
+    }
 
-    const { nombre, email, mensaje } = req.body;
+    const { nombre, email, mensaje } = req.body || {};
 
     if (!nombre || !email || !mensaje) {
-
       context.res = {
         status: 400,
-        body: {
-          success: false,
-          message: "Todos los campos son obligatorios."
-        }
+        body: { error: "Todos los campos son obligatorios." }
       };
-
       return;
     }
 
@@ -27,34 +28,24 @@ module.exports = async function (context, req) {
       subject: `Nuevo mensaje de ${nombre}`,
       html: `
         <h2>Nuevo mensaje desde ADAutomationHub</h2>
-
         <p><strong>Nombre:</strong> ${nombre}</p>
-
         <p><strong>Email:</strong> ${email}</p>
-
         <p><strong>Mensaje:</strong></p>
-
         <p>${mensaje.replace(/\n/g, "<br>")}</p>
       `
     });
 
     context.res = {
       status: 200,
-      body: {
-        success: true
-      }
+      body: { success: true }
     };
 
   } catch (error) {
-
     context.log(error);
 
     context.res = {
       status: 500,
-      body: {
-        success: false,
-        message: "Error enviando el correo."
-      }
+      body: { error: "Error enviando correo." }
     };
   }
 };
