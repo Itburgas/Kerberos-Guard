@@ -1,6 +1,12 @@
 module.exports = async function (context, req) {
     context.res = {
         status: 200,
-        body: "API funcionando"
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: {
+            success: true,
+            message: "API funcionando"
+        }
     };
 };
